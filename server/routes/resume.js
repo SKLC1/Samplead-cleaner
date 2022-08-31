@@ -5,7 +5,7 @@ import scrapeEvents from '../scraper/eventsScraper.js'
 import scrapePostsV2 from '../scraper/postsScraper.js'
 export const resumeRouter = express.Router()
 
-resumeRouter.post('/scrape', async (req,res)=>{
+resumeRouter.post('/scrape', extendTimeoutMiddleware, async (req,res)=>{
   try {
     const scrapeResult = await scrapePostsV2({email: "tamirgalim@gmail.com",password: "asdfasdf12345"}, req.body)
     if(req.body.config.getEvents){
