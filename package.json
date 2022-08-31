@@ -38,10 +38,6 @@
     "node-openvpn": "^0.1.1",
     "nodemon": "^2.0.19",
     "phantombuster-sdk": "^0.3.3",
-    "puppeteer": "^17.0.0",
-    "puppeteer-extra": "^3.3.4",
-    "puppeteer-extra-plugin-stealth": "^2.11.1",
-    "puppeteer-page-proxy": "^1.2.8",
-    "zyte-smartproxy-puppeteer": "^1.0.13"
+    "puppeteer": "^17.0.0"
   }
 }
