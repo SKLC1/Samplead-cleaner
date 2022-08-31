@@ -1,0 +1,8 @@
+Current task:
+BEFORE: fix events rendering error
+1.open in new window by default.
+2.dont save event twice.
+3.like threshold for events
+4.create password for app
+5. !! Deploy to AWS (without getting profiles)
+6.Bring down agent id
