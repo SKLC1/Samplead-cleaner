@@ -1,7 +1,5 @@
 import axios from "axios";
-import PuppeteerExtra from "puppeteer-extra";
-import stealthPlugin from 'puppeteer-extra-plugin-stealth'
-import useProxy from "puppeteer-page-proxy"
+import puppeteer from 'puppeteer'
 
 async function addLocationToProfile_v2(bot ,profiles) {
 
@@ -11,8 +9,8 @@ async function addLocationToProfile_v2(bot ,profiles) {
   
   console.log(curl);
 
-  PuppeteerExtra.use(stealthPlugin())
-  const browser = await PuppeteerExtra.launch({
+  
+  const browser = await puppeteer.launch({
     // args: ['--proxy-server=socks5://127.0.0.1:9050'],
     headless: false,
   });
