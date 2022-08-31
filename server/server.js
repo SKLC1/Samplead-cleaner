@@ -5,6 +5,7 @@ import { resumeRouter } from './routes/resume.js'
 import cors from 'cors'
 import bodyParser from 'body-parser';
 import scrapePostsV2 from './scraper/postsScraper.js'
+import extendTimeoutMiddleware from '../server/models/middleware.js'
 
 dotenv.config()
 
