@@ -18,8 +18,8 @@ resumeRouter.post('/scrape', async (req,res)=>{
     res.json({message: error.message})
   }
 })
-
-resumeRouter.post('/attend', async (req,res)=>{
+=
+resumeRouter.post('/attend', extendTimeoutMiddleware, async (req,res)=>{
   try {
     const res = await registerToEvents({email: "tamirgalim@gmail.com",password: "asdfasdf12345"}, req.body.eventLinks)
     res.json(res)
