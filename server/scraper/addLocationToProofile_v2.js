@@ -11,7 +11,6 @@ async function addLocationToProfile_v2(bot ,profiles) {
 
   
   const browser = await puppeteer.launch({
-    // args: ['--proxy-server=socks5://127.0.0.1:9050'],
     headless: false,
   });
   const context = await browser.createIncognitoBrowserContext();

@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 import { resumeRouter } from './routes/resume.js'
 import cors from 'cors'
 import bodyParser from 'body-parser';
+import scrapePostsV2 from './scraper/postsScraper.js'
 
 dotenv.config()
 
@@ -27,6 +28,10 @@ app.use(cors())
 app.use(express.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
 app.use('/resume', resumeRouter)
+app.use(function (req, res) {
+  let delayed = new DelayedResponse(req, res);
+  scrapePostsV2(delayed.wait());
+});
 
 app.listen(PORT,()=>{
   console.log(`server running on ${PORT}`);
