@@ -3,7 +3,7 @@ import puppeteer from 'puppeteer'
 
 
 //bots
-const user1 = {email: "tamirgalim@gmail.com",password: "asdfasdf12345"}; // banned search
+const user1 = {email: "tamirgalim@gmail.com",password: "asdfasdf12345"}; 
 const user2 = {email: "ukd5880@gmail.com",password: ")x-B=MV_X%dtw3="}; // banned
 const user3 = {email: "davidglaritz@gmail.com",password: "David5101!"};
 const user4 = {email: "fasonjamasi@gmail.com",password: "asdfasdf12345"}; 
