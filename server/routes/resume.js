@@ -3,10 +3,9 @@ import express from 'express'
 import convertToCSV from '../scraper/createCSV.js'
 import scrapeEvents from '../scraper/eventsScraper.js'
 import scrapePostsV2 from '../scraper/postsScraper.js'
-import extendTimeoutMiddleware from '../models/middleware.js'
 export const resumeRouter = express.Router()
 
-resumeRouter.post('/scrape', extendTimeoutMiddleware, async (req,res)=>{
+resumeRouter.post('/scrape', async (req,res)=>{
   try {
     const scrapeResult = await scrapePostsV2({email: "tamirgalim@gmail.com",password: "asdfasdf12345"}, req.body)
     if(req.body.config.getEvents){

@@ -5,7 +5,6 @@ import { resumeRouter } from './routes/resume.js'
 import cors from 'cors'
 import bodyParser from 'body-parser';
 import scrapePostsV2 from './scraper/postsScraper.js'
-import extendTimeoutMiddleware from '../server/models/middleware.js'
 
 dotenv.config()
 
@@ -29,8 +28,6 @@ app.use(cors())
 app.use(express.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
 app.use('/resume', resumeRouter)
-
-app.use(extendTimeoutMiddleware)
 
 app.listen(PORT,()=>{
   console.log(`server running on ${PORT}`);
