@@ -146,7 +146,7 @@ function ScraperResults({links, postAgentID, eventsAgentID}) {
             <>
             <div key={postObj.keyword}>
              <h3>
-              Result for "{postObj.keyword}"
+              posts result for "{postObj.keyword}"
              </h3>
              <ul>
                {renderLinks(postObj.data)}
@@ -185,7 +185,7 @@ function ScraperResults({links, postAgentID, eventsAgentID}) {
       return Object.keys(eventsObj.events).map((keyName,i)=>{
         return(
           <div key={i}>
-             <h4>{keyName}</h4>
+             <h4>{keyName} events</h4>
              <ul>
                {eventsObj.events[keyName].map((link,idx)=>{
                 return <li key={idx}>
@@ -242,8 +242,8 @@ function ScraperResults({links, postAgentID, eventsAgentID}) {
         {alreadyScraped}
        <Button onClick={createCSV}>Add to CSV</Button>
         {/* <a href="https://docs.google.com/spreadsheets/d/13oRvFPVTr-XSy9EuQXyEv1TiBeZ8t85CLdzPVSDxr1o/edit#gid=0">Results, </a> */}
-        <a href="https://docs.google.com/spreadsheets/d/1wmJ8lWwl3znr6dYC1tM1MRhjlHgZJsUnk-7PiMS6bB4/edit#gid=0">Results(No location)</a>
-      <FormControlLabel control={<Checkbox defaultChecked onChange={()=>setGetLocations(!getLocations)} />} label="Add Locations" />
+        <a href="https://docs.google.com/spreadsheets/d/1wmJ8lWwl3znr6dYC1tM1MRhjlHgZJsUnk-7PiMS6bB4/edit#gid=0">CSV Results</a>
+      {/* <FormControlLabel control={<Checkbox defaultChecked onChange={()=>setGetLocations(!getLocations)} />} label="Add Locations" /> */}
       </div>
     </div>}
     </>

@@ -15,7 +15,7 @@ async function scrapeEvents(bot, userConfig, iteration){
   const desiredAmountOfLinks = userConfig.config.scrollCount
 
   const browser = await puppeteer.launch({
-    headless: true,
+    headless: false,
     args: ['--no-sandbox','--disable-setuid-sandbox'],
   });
   const page = await browser.newPage();
@@ -39,24 +39,8 @@ async function scrapeEvents(bot, userConfig, iteration){
       done = true
       return;
     }
-    //delete last input 
-    page.waitForSelector('.search-global-typeahead__input', {visible: true})
-    await page.evaluate( () => document.querySelector(".search-global-typeahead__input").value = "")
-    //write keyword
-    page.waitForSelector('.search-global-typeahead__input', {visible: true})
-    await page.type(".search-global-typeahead__input",`${config.keywords[i]}`,{delay: 15})
-    await page.keyboard.press('Enter');
-    // insert keyword
-    await page.waitForTimeout(4000 + randomWait());
-    page.waitForSelector("#search-reusables__filters-bar > ul > li", {visible: true})
-    const buttons = await page.$$("#search-reusables__filters-bar > ul > li")
-    for (const li of buttons) {
-      let value = await page.evaluate(el => el.textContent, li)
-      if(value.includes('Events')){
-        await li.click()
-      }
-    }
-
+    await page.goto(`https://www.linkedin.com/search/results/events/?keywords=${config.keywords[i]}&origin=SWITCH_SEARCH_VERTICAL&sid=qVl`)
+    await page.waitForTimeout(2000 + randomWait());
     await captureResponse(page,browser,config, config.keywords[i])
     
   }
@@ -69,9 +53,10 @@ async function scrapeEvents(bot, userConfig, iteration){
 async function captureResponse(page,browser,config, keyword){
   await page.on('response', async (response)=> {
     if (response.url().includes('clusters?decorationId')){
-      // console.log("response code: ", response.status());
+      console.log("response code: ", response.status());
       const data = await response.json();
       if(response.status() === 200){
+        console.log(data);
         const relevantData = data.included
         const links = []
         for (let i = 0; i < 9; i++) {
