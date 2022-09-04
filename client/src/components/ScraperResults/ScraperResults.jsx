@@ -218,6 +218,23 @@ function ScraperResults({links, postAgentID, eventsAgentID}) {
         setLoading(false)
       }
     }
+
+    async function createCSVofLinks(){
+      console.log(links);
+      const allLinks = [];
+        links.forEach((result)=>{
+          for (const [key, value] of Object.entries(result)) {
+            if(key === "data"){
+               allLinks.concat(result.data)
+            }
+          }
+        })
+      console.log(allLinks);
+      const {data} = await axios.post('https://sheetdb.io/api/v1/iakojl01kdc99/import/json',{
+        "json": JSON.stringify(allLinks),
+      })
+      console.log(data);
+    }
     
     return ( 
     <>
@@ -228,6 +245,7 @@ function ScraperResults({links, postAgentID, eventsAgentID}) {
      </div>
      <h2>SAVED</h2>
      {renderSavedLinks()}
+      <Button onClick={createCSVofLinks}>CSV of links</Button>
      { <Button onClick={scrapeSavedArray}>Get Profiles From Posts</Button>}
      { <Button onClick={scrapeSavedEventsArray}>Get Profiles From Events</Button>}
      {savedEvents.length > 0 && <p>NOTE: that these event must be manually registered to by the scraper bot account.</p>}
