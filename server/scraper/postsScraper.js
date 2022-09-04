@@ -20,6 +20,8 @@ async function scrapePostsV2(bot, userConfig, iteration){
     args: ['--no-sandbox','--disable-setuid-sandbox'],
   });
   const page = await browser.newPage();
+  await page.setViewport({ width: 1366, height: 768});
+
   
   async function openLinkedIn(browser,page,bot, { config }, category) {
     console.log(config);
