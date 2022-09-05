@@ -271,7 +271,7 @@ function ScraperResults({links, postAgentID, eventsAgentID}) {
         {alreadyScraped}
        <Button onClick={createCSV}>Add to CSV</Button>
         {/* <a href="https://docs.google.com/spreadsheets/d/13oRvFPVTr-XSy9EuQXyEv1TiBeZ8t85CLdzPVSDxr1o/edit#gid=0">Results, </a> */}
-        <a href="https://docs.google.com/spreadsheets/d/1wmJ8lWwl3znr6dYC1tM1MRhjlHgZJsUnk-7PiMS6bB4/edit#gid=0">CSV Results</a>
+        <a target="_blank" href="https://docs.google.com/spreadsheets/d/1wmJ8lWwl3znr6dYC1tM1MRhjlHgZJsUnk-7PiMS6bB4/edit#gid=0">CSV Results</a>
       {/* <FormControlLabel control={<Checkbox defaultChecked onChange={()=>setGetLocations(!getLocations)} />} label="Add Locations" /> */}
       </div>
     </div>}
