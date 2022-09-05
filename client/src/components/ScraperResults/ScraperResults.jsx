@@ -221,19 +221,30 @@ function ScraperResults({links, postAgentID, eventsAgentID}) {
 
     async function createCSVofLinks(){
       console.log(links);
-      const allLinks = [];
+      let allLinks = [];
         links.forEach((result)=>{
-          for (const [key, value] of Object.entries(result)) {
-            if(key === "data"){
-               allLinks.concat(result.data)
+          if("data" in result){
+            allLinks = [...allLinks, ...result.data]
+          } else { 
+           for (const [key, value] of Object.entries(result.events)) {
+             allLinks = [...allLinks, ...value]
             }
           }
         })
-      console.log(allLinks);
-      const {data} = await axios.post('https://sheetdb.io/api/v1/iakojl01kdc99/import/json',{
-        "json": JSON.stringify(allLinks),
-      })
-      console.log(data);
+        const size = 5;
+        const chunksOfProfilesArray = [];
+        
+        for (let i = 0; i < allLinks.length; i+=size) {
+          chunksOfProfilesArray.push(allLinks.slice(i,i+size))
+        }
+
+      for (let i = 0; i < chunksOfProfilesArray.length; i++) {
+        console.log(chunksOfProfilesArray[i]);
+        const {data} = await axios.post('https://sheetdb.io/api/v1/iakojl01kdc99/import/json',{
+          "json": JSON.stringify(chunksOfProfilesArray[i]),
+        })
+        console.log(data);
+      }
     }
     
     return ( 
