@@ -2,6 +2,7 @@ import { Button, Checkbox, Chip, FormControlLabel } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { DotLoader } from "react-spinners";
+import CustomerSheetButton from "../CustomerSheetButton/CustomerSheetButton";
 import Link from "./Link";
 
 function ScraperResults({links, postAgentID, eventsAgentID}) {
@@ -256,7 +257,8 @@ function ScraperResults({links, postAgentID, eventsAgentID}) {
      </div>
      <h2>SAVED</h2>
      {renderSavedLinks()}
-      <Button onClick={createCSVofLinks}>CSV of links</Button>
+      <Button onClick={createCSVofLinks}>CSV of All links</Button>
+      <CustomerSheetButton links={links}/>
      { <Button onClick={scrapeSavedArray}>Get Profiles From Posts</Button>}
      { <Button onClick={scrapeSavedEventsArray}>Get Profiles From Events</Button>}
      {savedEvents.length > 0 && <p>NOTE: that these event must be manually registered to by the scraper bot account.</p>}
